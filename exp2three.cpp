@@ -29,10 +29,17 @@ int main()
 	}*/
 	
 	mp.clear();
-	mp["*"]=13;mp["/"]=13;
+	mp["++"]=14;mp["--"]=14;
+	mp["*"]=13;mp["/"]=13;mp["%"]=13;
 	mp["+"]=12;mp["-"]=12;
-	mp[">="]=10;mp["<="]=10;
+	mp["<<"]=11;mp[">>"]=11;
+	mp[">="]=10;mp["<="]=10;mp["<"]=10;mp[">"]=10;
 	mp["=="]=9;mp["!="]=9;
+	mp["^"]=7;
+	mp["|"]=6;
+	mp["&&"]=5;
+	mp["||"]=4;
+	mp["="]=2;mp["+="]=2;mp["-="]=2;mp["*="]=2;mp["/="]=2;mp["%="]=2;mp["&="]=2;mp["^="]=2;mp["|="]=2;mp["<<="]=2;mp[">>="]=2;
 	mp["("]=-1;mp[")"]=-1;
 	
 	while(!sta.empty())sta.pop();
@@ -100,10 +107,18 @@ int main()
 		{
 			string Top=st.top();st.pop();
 			string Top1=st.top();st.pop();
-			num++;
-			string var="temp"+to_string(num);
-			cout << var << " = " << Top1 << " " << now << " " << Top << " " << endl;
-			st.push(var);
+			if(now!="=")
+			{
+				num++;
+				string var="temp"+to_string(num);
+				cout << now << " " << var << " " << Top1 << " " << Top << endl;
+				//cout << var << " = " << Top1 << " " << now << " " << Top << " " << endl;
+				st.push(var);
+			}
+			else
+			{
+				cout << now << " " << Top1 << " " << Top << endl;
+			}
 		}
 	}
 	return 0;
